@@ -1,0 +1,41 @@
+{
+  "name": "freezy-bee/prepend-route",
+  "license": [
+    "MIT"
+  ],
+  "type": "library",
+  "description": "Nette Framework extension with prepend route support",
+  "keywords": [
+    "nette",
+    "route"
+  ],
+  "authors": [
+    {
+      "name": "Jakub Janata",
+      "email": "jakubjanata@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "~7.1",
+    "nette/di": "~2.4 || ~3.0",
+    "nette/application": "^2.4 || ~3.0"
+  },
+  "require-dev": {
+    "kdyby/console": "^2.7",
+    "nette/bootstrap": "~2.4 || ~3.0",
+    "nette/tester": "dev-master",
+    "phpstan/phpstan": "dev-master",
+    "squizlabs/php_codesniffer": "^3.0",
+    "tracy/tracy": "^2.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "FreezyBee\\PrependRoute\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "FreezyBee\\PrependRoute\\Tests\\": "tests/"
+    }
+  }
+}

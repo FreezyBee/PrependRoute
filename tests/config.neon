@@ -1,0 +1,11 @@
+extensions:
+    console: Kdyby\Console\DI\ConsoleExtension
+    prependRoute: FreezyBee\PrependRoute\DI\PrependRouteExtension
+    test: FreezyBee\PrependRoute\Tests\Utils\TestExtension
+
+services:
+    router: FreezyBee\PrependRoute\Tests\Utils\RouterFactory::createRouter
+
+application:
+    mapping:
+        *: FreezyBee\PrependRoute\Tests\Utils\*Presenter
