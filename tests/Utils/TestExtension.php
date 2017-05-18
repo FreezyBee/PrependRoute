@@ -26,6 +26,6 @@ class TestExtension extends CompilerExtension implements IPrependRouteProvider
      */
     public function getPrependRoutes(): array
     {
-        return [$this->prefix('testRoute')];
+        return [$this->prefix('testRoute'), $this->prefix('testRoute')];
     }
 }
