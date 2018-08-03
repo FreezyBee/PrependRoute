@@ -40,7 +40,7 @@ class PrependRouteExtension extends CompilerExtension
             }
         }
 
-        $oldBody = preg_replace('/return \$service;$/', 'return $mainService;', $method->getBody());
+        $oldBody = preg_replace('/return \$service;$/', 'return $mainService;', $method->getBody() ?? '');
 
         $method->setBody("$newBody\$mainService[] = $oldBody");
     }

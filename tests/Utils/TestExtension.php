@@ -16,13 +16,12 @@ class TestExtension extends CompilerExtension implements IPrependRouteProvider
     {
         $this->getContainerBuilder()
             ->addDefinition($this->prefix('testRoute'))
-            ->setClass(Route::class, ['prepend-path', 'PrependTest:someAction'])
+            ->setFactory(Route::class, ['prepend-path', 'PrependTest:someAction'])
             ->setAutowired(false);
     }
 
     /**
-     * Return array of services - service MUST implements IRoute
-     * @return string[]
+     * {@inheritdoc}
      */
     public function getPrependRoutes(): array
     {
