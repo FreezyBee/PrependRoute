@@ -20,7 +20,7 @@ class RouterFactory
      */
     public static function createRouter(): IRouter
     {
-        $router = new RouteList;
+        $router = new RouteList();
         $router[] = new Route('[<presenter>][/<action=default>]', 'Test:');
         return $router;
     }
