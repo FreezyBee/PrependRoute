@@ -5,7 +5,6 @@ namespace FreezyBee\PrependRoute\Tests\Integration;
 
 require __DIR__ . '/../bootstrap.php';
 
-use Kdyby\Console\CliRouter;
 use Nette\Application\IRouter;
 use Nette\Configurator;
 use Nette\Http\Request;
@@ -28,20 +27,16 @@ class PrependTest extends TestCase
         $configurator->addConfig(__DIR__ . '/../config.neon');
         $container = $configurator->createContainer();
 
-        /** @var CliRouter $cliRoute */
-        $cliRoute = $container->getService('console.router');
-        $cliRoute->allowedMethods = [];
-
         /** @var IRouter $router */
         $router = $container->getService('router');
 
-        $request = $router->match(new Request(new UrlScript('prepend-path')));
-        Assert::same('PrependTest', $request->getPresenterName());
-        Assert::same(['action' => 'someAction'], $request->getParameters());
+        $request = $router->match(new Request(new UrlScript('/prepend-path', '/prepend-path')));
+        Assert::same('PrependTest', $request['presenter']);
+        Assert::same('someAction', $request['action']);
 
-        $request = $router->match(new Request(new UrlScript('test')));
-        Assert::same('Test', $request->getPresenterName());
-        Assert::same(['action' => 'default'], $request->getParameters());
+        $request = $router->match(new Request(new UrlScript('/test', '/test')));
+        Assert::same('Test', $request['presenter']);
+        Assert::same('default', $request['action']);
     }
 }
 

@@ -1,5 +1,4 @@
 extensions:
-    console: Kdyby\Console\DI\ConsoleExtension
     prependRoute: FreezyBee\PrependRoute\DI\PrependRouteExtension
     test: FreezyBee\PrependRoute\Tests\Utils\TestExtension
 

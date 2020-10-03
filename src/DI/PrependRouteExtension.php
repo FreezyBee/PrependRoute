@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace FreezyBee\PrependRoute\DI;
@@ -32,7 +33,7 @@ class PrependRouteExtension extends CompilerExtension
 
         $method = $classType->getMethod('createServiceRouting__router');
 
-        $newBody = '$mainService = new Nette\Application\Routers\RouteList;' . "\n";
+        $newBody = '$mainService = new Nette\Application\Routers\RouteList();' . "\n";
 
         foreach ($routeDefs as $routeDef) {
             foreach ($routeDef as $route) {
@@ -40,8 +41,8 @@ class PrependRouteExtension extends CompilerExtension
             }
         }
 
-        $oldBody = preg_replace('/return \$service;$/', 'return $mainService;', $method->getBody() ?? '');
+        $oldBody = str_replace('return ', '$mainService[] = ', $method->getBody() ?? '');
 
-        $method->setBody("$newBody\$mainService[] = $oldBody");
+        $method->setBody("$newBody $oldBody return \$mainService;");
     }
 }
