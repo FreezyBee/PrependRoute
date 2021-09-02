@@ -31,7 +31,7 @@ class PrependRouteExtension extends CompilerExtension
             return;
         }
 
-        $method = $classType->getMethod('createServiceRouting__router');
+        $method = $classType->getMethod('createServiceRouter');
 
         $newBody = '$mainService = new Nette\Application\Routers\RouteList();' . "\n";
 
