@@ -37,12 +37,12 @@ class PrependRouteExtension extends CompilerExtension
 
         foreach ($routeDefs as $routeDef) {
             foreach ($routeDef as $route) {
-                $newBody .= "\$mainService[] = \$this->getService('$route');\n";
+                $newBody .= "\$mainService->add(\$this->getService('$route'));\n";
             }
         }
 
-        $oldBody = str_replace('return ', '$mainService[] = ', $method->getBody() ?? '');
+        $oldBody = str_replace('return ', '$original = ', $method->getBody());
 
-        $method->setBody("$newBody $oldBody return \$mainService;");
+        $method->setBody("$newBody $oldBody return \$mainService->add(\$original);");
     }
 }

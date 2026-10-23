@@ -6,7 +6,6 @@ namespace FreezyBee\PrependRoute\Tests\Utils;
 
 use Nette\Application\Routers\Route;
 use Nette\Application\Routers\RouteList;
-use Nette\Routing\Router;
 use Nette\StaticClass;
 
 /**
@@ -16,13 +15,10 @@ class RouterFactory
 {
     use StaticClass;
 
-    /**
-     * @return RouteList<Router>
-     */
     public static function createRouter(): RouteList
     {
         $router = new RouteList();
-        $router[] = new Route('[<presenter>][/<action=default>]', 'Test:');
+        $router->add(new Route('[<presenter>][/<action=default>]', 'Test:'));
         return $router;
     }
 }
